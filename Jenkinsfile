@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = "heyitsarsh/college-department-portal"
+        KUBECONFIG = "C:\\Users\\lenovo\\.kube\\config"
     }
 
     stages {
@@ -37,6 +38,8 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
+                bat 'kubectl config current-context'
+                bat 'kubectl get nodes'
                 bat 'kubectl apply -f deployment.yaml'
                 bat 'kubectl set image deployment/college-department-portal college-department-portal=%DOCKER_IMAGE%:%BUILD_NUMBER%'
                 bat 'kubectl rollout status deployment/college-department-portal'
