@@ -9,7 +9,7 @@ pipeline {
 
         stage('Clone Code') {
             steps {
-                git branch: 'main',
+                git branch: 'master',
                     url: 'https://github.com/HeyItsArsh/Agile-Lab-8-3.git'
             }
         }
